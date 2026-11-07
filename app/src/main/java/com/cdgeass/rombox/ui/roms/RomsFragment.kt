@@ -79,7 +79,7 @@ class RomsFragment : Fragment(R.layout.fragment_roms) {
         val state = viewModel.state.value
         val items = viewModel.visibleItems()
 
-        binding.titleText.text = getString(R.string.rom_library_count, state.items.size)
+        binding.titleText.text = getString(R.string.rom_library_count, state.platformShort, state.items.size)
         binding.dirPath.text = state.dirPath
         binding.permissionCard.visibility = if (state.hasStorageAccess) View.GONE else View.VISIBLE
 

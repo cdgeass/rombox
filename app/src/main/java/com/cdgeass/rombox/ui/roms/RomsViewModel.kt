@@ -31,6 +31,7 @@ enum class SortMode(val label: String) {
 
 data class RomsUiState(
     val platformName: String = "",
+    val platformShort: String = "",
     val dirPath: String = "",
     val items: List<RomFile> = emptyList(),
     val scanning: Boolean = false,
@@ -53,6 +54,7 @@ class RomsViewModel(app: Application) : AndroidViewModel(app) {
     private val _state = MutableStateFlow(
         RomsUiState(
             platformName = platform.displayName,
+            platformShort = platform.shortName,
             dirPath = settings.romDirPath,
             hasStorageAccess = StorageAccess.hasAccess(app),
         )

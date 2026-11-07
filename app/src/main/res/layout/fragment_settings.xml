@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="ROM 存储目录"
+            android:text="ROM 根目录（按平台分子目录）"
             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
         <TextView
@@ -35,6 +35,15 @@
             android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?attr/colorPrimary" />
+
+        <TextView
+            android:id="@+id/platformDirText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textIsSelectable="true"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant" />
 
         <LinearLayout
             android:layout_width="match_parent"

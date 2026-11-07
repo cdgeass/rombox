@@ -12,7 +12,7 @@ Android 上的 ROM 库管理 + 无线传输工具，两件事：
 - **规范命名**：`游戏名 (区域).gba`，剔除 `(USA)`/`[九柳]`/`(64Mb)` 等标签、中文名优先、非法字符过滤、重名加序号，支持单个与整目录（两阶段改名，不会互相覆盖）
 - **去重**：按 `(大小, CRC32)` 分组，每组保留一份，其余一键删除
 - **无线传输**：内置 HTTP 服务（默认 8080），电脑浏览器访问 `http://<手机IP>:8080` 即可拖拽上传、删除、改名、下载；上传 `.zip` 会自动解出包里所有 ROM；文件名支持 UTF-8 / GBK（Windows curl 常见）
-- **可指定 ROM 目录**：内置目录选择器，默认挑 `PocketGames/roms/gba`（掌机常见布局），也可切到 SD 卡任意目录
+- **按平台分类的 ROM 目录**：设置里只配一个**根目录**（默认 `PocketGames/roms`），每个平台用自己的子目录——当前只启用 `gba/`，以后加 GB/GBC/SNES 自动各占一目录；扫描、命名、去重、上传都只作用于当前平台目录
 - **前台服务**：切到后台、锁屏后传输服务继续跑，通知栏显示访问地址
 
 ## 快速开始
@@ -37,7 +37,18 @@ adb shell appops set com.cdgeass.rombox MANAGE_EXTERNAL_STORAGE allow
 |------|------|
 | ROM 库 | 目录路径、搜索、扫描、右上角菜单（全部规范命名 / 整理重复 / 排序）；点条目看信息和单条操作 |
 | 无线传输 | 开关键、端口、访问地址（可复制）、已接收统计、运行日志 |
-| 设置 | ROM 目录选择/恢复默认、端口、启动时自动开启、权限状态、关于 |
+| 设置 | ROM 根目录选择/恢复默认（下方实时显示当前平台子目录）、端口、启动时自动开启、权限状态、关于 |
+
+## 目录结构
+
+```
+<ROM 根目录>              # 设置页可改，默认 /sdcard/PocketGames/roms
+└── gba/                  # 当前平台子目录（RomPlatform.dirName）
+    └── 光明之魂.gba
+```
+
+选目录时如果直接选到了 `gba` 这种平台子目录本身，会自动退到它的上级当根目录，不会出现 `gba/gba`。
+旧版本只存了单一目录的配置会自动迁移成「根目录 + 平台子目录」。
 
 ## HTTP 接口
 
@@ -68,7 +79,7 @@ app/src/main/java/com/cdgeass/rombox/
 │   ├── rom/RomRepository.kt  扫描、CRC32、去重、改名、删除
 │   ├── rom/Naming.kt         规范命名规则
 │   ├── rom/ZipImporter.kt    zip 内 ROM 解包
-│   ├── settings/AppSettings.kt  SharedPreferences 配置
+│   ├── settings/AppSettings.kt  配置：根目录 + 平台子目录 → 实际目录
 │   └── util/                 IPv4、容量格式化、存储权限判断
 ├── transfer/
 │   ├── RomHttpServer.kt      极简 HTTP 服务（ServerSocket + 线程池，无第三方依赖）
@@ -86,10 +97,10 @@ app/src/main/java/com/cdgeass/rombox/
 
 ### 加一个平台要做什么
 
-1. 新建 `XxxPlatform : RomPlatform`，实现 `id`、`displayName`、`extensions`、`headerReadSize`、`parseHeader`
+1. 新建 `XxxPlatform : RomPlatform`，实现 `id`、`displayName`、`shortName`、`extensions`、`headerReadSize`、`parseHeader`
 2. 在 `Platforms` 的列表里加一项
 
-之后扫描、上传校验、规范命名、列表筛选都会自动带上新扩展名。区域/标题的展示规则沿用 `RomHeader`，
+之后扫描、上传校验、规范命名、列表筛选都会自动带上新扩展名；平台默认使用同名的子目录（`dirName` 默认等于 `id`，需要别名时再覆写）。区域/标题的展示规则沿用 `RomHeader`，
 命名复用 `Naming.canonicalFileName()`。
 
 ## 行为说明

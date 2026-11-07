@@ -33,15 +33,15 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         _binding = FragmentSettingsBinding.bind(view)
 
         binding.btnPickDir.setOnClickListener {
-            DirPicker.show(requireActivity(), File(settings.romDirPath)) { dir ->
-                settings.romDirPath = dir.absolutePath
+            DirPicker.show(requireActivity(), File(settings.romRootPath)) { dir ->
+                settings.romRootPath = dir.absolutePath
                 requireContext().container.notifyDataChanged()
                 render()
             }
         }
 
         binding.btnResetDir.setOnClickListener {
-            settings.romDirPath = AppSettings.defaultRomDir()
+            settings.romRootPath = AppSettings.defaultRomRoot()
             requireContext().container.notifyDataChanged()
             render()
         }
@@ -80,7 +80,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun render() {
-        binding.dirText.text = settings.romDirPath
+        binding.dirText.text = settings.romRootPath
+        binding.platformDirText.text = getString(
+            R.string.settings_platform_dir,
+            settings.platformDirName,
+            settings.romDirPath,
+        )
         binding.editPort.setText(settings.port.toString())
         binding.switchAutoStart.isChecked = settings.autoStart
         refreshPermissionText()

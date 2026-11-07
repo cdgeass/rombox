@@ -18,6 +18,7 @@ class GbaPlatform : RomPlatform {
 
     override val id: String = "gba"
     override val displayName: String = "Game Boy Advance"
+    override val shortName: String = "GBA"
     override val extensions: Set<String> = setOf(".gba", ".agb")
     override val headerReadSize: Int = 0xC0
 

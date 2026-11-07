@@ -14,6 +14,17 @@ interface RomPlatform {
     /** 展示名 */
     val displayName: String
 
+    /** 列表/标题用的短名，比如 GBA */
+    val shortName: String
+        get() = id.uppercase()
+
+    /**
+     * 按平台分类存放时的子目录名，比如根目录 `.../roms` 下的 `gba/`。
+     * 新平台一般不用改（默认等于 [id]），需要别名时再覆写。
+     */
+    val dirName: String
+        get() = id
+
     /** 小写扩展名集合，含点，如 setOf(".gba", ".agb") */
     val extensions: Set<String>
 

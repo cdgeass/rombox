@@ -3,7 +3,7 @@
     <string name="app_name">RomBox</string>
 
     <!-- ROM 列表 -->
-    <string name="rom_library_count">ROM 库 · %1$d 个</string>
+    <string name="rom_library_count">%1$s 库 · %2$d 个</string>
     <string name="rom_empty_hint">目录里还没有 ROM\n把 .gba 文件放进目录，或到「无线传输」页上传</string>
     <string name="rom_no_match">没有匹配的 ROM</string>
     <string name="more_actions">更多操作</string>
@@ -42,5 +42,6 @@
     <string name="transfer_stats">已接收 %1$d 个文件 · %2$s</string>
 
     <!-- 设置 -->
-    <string name="settings_about_body">RomBox 1.0 — GBA ROM 管理与无线传输\n支持扫描解析、规范命名、内容去重、zip 自动解包；平台解析做成可扩展插件（后续可加 GB/GBC/NES…）</string>
+    <string name="settings_platform_dir">当前平台子目录（%1$s）：%2$s</string>
+    <string name="settings_about_body">RomBox 1.0 — GBA ROM 管理与无线传输\nROM 按平台分子目录存放（当前 GBA）；支持扫描解析、规范命名、内容去重、zip 自动解包</string>
 </resources>
