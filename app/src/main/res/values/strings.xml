@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RomBox</string>
+
+    <!-- ROM 列表 -->
+    <string name="rom_library_count">ROM 库 · %1$d 个</string>
+    <string name="rom_empty_hint">目录里还没有 ROM\n把 .gba 文件放进目录，或到「无线传输」页上传</string>
+    <string name="rom_no_match">没有匹配的 ROM</string>
+    <string name="more_actions">更多操作</string>
+    <string name="rename_all">全部改为规范名称</string>
+    <string name="rename_all_message">将按「游戏名 (区域).gba」整理 %1$d 个文件，重复名会自动加序号。</string>
+    <string name="rename_all_confirm">开始整理</string>
+    <string name="find_dupes">整理重复 ROM</string>
+    <string name="no_dupes">没有发现重复 ROM</string>
+    <string name="dupes_found">发现 %1$d 组重复，可清理 %2$d 个文件：</string>
+    <string name="delete_dupes">清理重复</string>
+
+    <string name="action_info">信息</string>
+    <string name="action_rename">规范命名</string>
+    <string name="action_delete">删除</string>
+    <string name="delete_message">确定删除 %1$s 吗？此操作不可撤销。</string>
+
+    <string name="info_title">%1$s</string>
+    <string name="info_file">文件名：%1$s</string>
+    <string name="info_size">大小：%1$s</string>
+    <string name="info_crc">CRC32：%1$s</string>
+    <string name="info_code">游戏码：%1$s</string>
+    <string name="info_maker">厂商：%1$s</string>
+    <string name="info_region">区域：%1$s</string>
+    <string name="info_version">版本：Rev %1$d</string>
+    <string name="info_modified">修改时间：%1$s</string>
+    <string name="info_header_problem">头部校验：%1$s</string>
+    <string name="permission_already">已有文件访问权限</string>
+
+    <!-- 无线传输 -->
+    <string name="transfer_enable">开启无线传输服务</string>
+    <string name="transfer_off">未开启</string>
+    <string name="transfer_copy">复制地址</string>
+    <string name="transfer_copied">地址已复制</string>
+    <string name="transfer_port_invalid">端口需在 1024 - 65535 之间</string>
+    <string name="transfer_start_failed">启动失败：%1$s</string>
+    <string name="transfer_stats">已接收 %1$d 个文件 · %2$s</string>
+
+    <!-- 设置 -->
+    <string name="settings_about_body">RomBox 1.0 — GBA ROM 管理与无线传输\n支持扫描解析、规范命名、内容去重、zip 自动解包；平台解析做成可扩展插件（后续可加 GB/GBC/NES…）</string>
+</resources>
